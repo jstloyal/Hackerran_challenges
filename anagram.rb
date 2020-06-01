@@ -7,7 +7,7 @@ def alphabet_hash
 end
 
 def anagram(str)
-  -1 if str.size.odd?
+  return -1 if str.size.odd?
   alphabet = alphabet_hash
   str.size.times do |index|
     letter = str[index]
@@ -15,11 +15,8 @@ def anagram(str)
   end
 
   positives = alphabet.values.select &:positive?
-
-  # postritivestr = alphabet.valuestr.strelect do |value|
-  #   value.postritive?
-  # end
   positives.sum
 end
 
 p anagram('string')
+p anagram('a')
