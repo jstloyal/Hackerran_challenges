@@ -15,3 +15,36 @@ p repeated_string('bannsqaweslealrsaleawwwqquuuiiiooopppuuyyyadfeawgghhhfffbbbvv
 # 2. Find the No. of repetitions which are required to find the ‘a’ occurrences.
 # 3. Multiply the single string occurrences to the No. of repetitions.
 # 4. If given n is not the multiple of given string size then we will find the ‘a’ occurrences in the remaining substring.
+
+
+var count = 0;
+
+function cc(card) {
+  // Only change code below this line
+  switch(card) {
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+      count ++;
+      break;
+    case 'J':
+    case 'Q':
+    case 'K':
+    case 'A':
+    case 10:
+      count --;
+      break;
+  }
+
+  var holdBet = 'Hold';
+  if (count > 0) {
+    holdBet = 'Bet';
+  }
+
+  return count + ' ' + holdBet;
+  // Only change code above this line
+}
+
+cc(2); cc(3); cc(7); cc('K'); cc('A');

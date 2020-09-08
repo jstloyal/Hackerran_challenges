@@ -5,7 +5,7 @@ def alphabet_hash
   end
   alphabet
 end
-
+alphabet_hash
 def anagram(str)
   return -1 if str.size.odd?
   alphabet = alphabet_hash
@@ -15,8 +15,10 @@ def anagram(str)
   end
 
   positives = alphabet.values.select &:positive?
+  # positives = alphabet.values.select if positive?
   positives.sum
 end
 
 p anagram('string')
 p anagram('a')
+p anagram("aaabbb")
