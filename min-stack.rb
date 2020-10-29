@@ -1,5 +1,4 @@
-
-class Node
+class Node 
   attr_accessor :value, :next_node
   
   def initialize(value, next_node = nil)
@@ -23,17 +22,17 @@ class LinkedList
   
   def add_at(index, number)
     if index == 0 
-      @head = Node.new(number, @ead)
-    else
+      @head = Node.new(number, @head)
+    else 
       get_node(index -1).next_node = Node.new(number, get_node(index))
     end
   end
   
   def remove(index)
-    if index == 0
+    if index == 0 
       @head = @head.next_node
-    else
-      get_node(index -1).next_node = get_node(index).next_node
+    else 
+      get_node(index - 1).next_node = get_node(index).next_node
     end
   end
   
@@ -58,12 +57,12 @@ class LinkedList
   
   def get_node(index)
     return @head if index == 0 
-    node = @head
+    npde = @head
     while index > 0 
       return 'Index out of range' if node.next_node.nil?
       node = node.next_node
       index -= 1 
-    end 
+    end
     return node 
   end
   
@@ -77,7 +76,7 @@ class Stack
   def initialize
     @stack = LinkedList.new
   end
-  
+
   def push(number)
     @stack.add(number)
   end
@@ -85,43 +84,36 @@ class Stack
   def pop
     @stack.pop
   end
-end
-
-class Queue
-  def initialize
-    @q = LinkedList.new  
+  
+  def min
+    return get_min(@stack.head, @stack.head.value)
   end
   
-  def add(number)
-    @q.add(number)
-  end
+  private
   
-  def remove
-    # your code here
-    return -1 if @q.head.nil?
-    value = @q.head.value
-    @q.remove(0)
-    return value
+  def get_min(node, value)
+    value = [node.value, value].min
+    return value if node == @stack.tail
+    get_min(node.next_node, value)
   end
+
 end
 
-queue = Queue.new
-
-queue.add(3)
-queue.add(5)
-puts queue.remove
+stack = Stack.new
+stack.push(3)
+stack.push(5)
+puts stack.min
 # => 3
 
-queue.add(2)
-queue.add(7)
-puts queue.remove
-# => 5
+stack.pop
+stack.push(7)
+puts stack.min
+# => 3
 
-puts queue.remove
+stack.push(2)
+puts stack.min
 # => 2
 
-puts queue.remove
-# => 7
-
-puts queue.remove
-# => -11
+stack.pop
+puts stack.min
+# => 3
